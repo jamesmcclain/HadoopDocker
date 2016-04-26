@@ -9,27 +9,33 @@ by pulling it from Docker Hub or building it using the provided Makefile.
 ### Pulling ###
 
 To pull the image from Docker Hub, type:
-```shell
+
+```bash
 docker pull jamesmcclain/hadoop:1
 ```
 
 ### Building ###
 
 To build the image with the provided Makefile, type:
-```shell
+
+```bash
 make
 ```
 
 ## Running the Leader ###
 
-To run the leader (which contains a YARN Resource Manager, a Hadoop NameNode, and a MapReduce History Server), type:
-```shell
-docker run -dit -p 8088:8088 -p 50070:50070 -p 19888:19888 -h leader --name leader --entrypoint /scripts/leader.sh hadoop:1
+The leader contains a YARN Resource Manager, a Hadoop NameNode, a MapReduce History Server, and everything contained by a follower.
+To run the leader, type:
+
+```bash
+docker run -it --rm -p 8088:8088 -p 50070:50070 -p 19888:19888 -h leader --name leader --entrypoint /scripts/leader.sh jamesmcclain/hadoop:1
 ```
 
 ## Running a Follower ###
 
-To run a follower (which contains both a YARN NodeManager and a Hadoop DataNode), type:
-```shell
-docker run -dit --entrypoint /scripts/follower.sh --link leader hadoop:1
+A follower contains a YARN NodeManager and a Hadoop DataNode.
+To run a follower, type:
+
+```bash
+docker run -it --rm --link leader --entrypoint /scripts/follower.sh jamesmcclain/hadoop:1
 ```
