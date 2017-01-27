@@ -1,4 +1,4 @@
-FROM java:openjdk-8u72-jdk
+FROM openjdk:8u111-jdk
 MAINTAINER James McClain <james.mcclain@gmail.com>
 
 ADD hadoop-2.7.2.tar.gz /opt
