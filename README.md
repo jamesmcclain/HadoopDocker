@@ -11,7 +11,7 @@ by pulling it from Docker Hub or building it using the provided Makefile.
 To pull the image from Docker Hub, type:
 
 ```bash
-docker pull jamesmcclain/hadoop:8u111
+docker pull jamesmcclain/hadoop:2.7.6
 ```
 
 ### Building ###
@@ -28,8 +28,8 @@ The leader contains a YARN Resource Manager, a Hadoop NameNode, a MapReduce Hist
 To run the leader, type:
 
 ```bash
-docker network create --driver bridge geowave
-docker run -it --rm --net=geowave -p 8088:8088 -p 50070:50070 -p 19888:19888 --hostname leader --name leader --entrypoint /scripts/leader.sh jamesmcclain/hadoop:8u111
+docker network create --driver bridge hadoop
+docker run -it --rm --net=hadoop -p 8088:8088 -p 50070:50070 -p 19888:19888 --hostname leader --name leader --entrypoint /scripts/leader.sh jamesmcclain/hadoop:2.7.6
 ```
 
 ## Running a Follower ###
@@ -38,5 +38,5 @@ A follower contains a YARN NodeManager and a Hadoop DataNode.
 To run a follower, type:
 
 ```bash
-docker run -it --rm --net=geowave --hostname follower1 --name follower1 --entrypoint /scripts/follower.sh jamesmcclain/hadoop:8u111
+docker run -it --rm --net=hadoop --hostname follower1 --name follower1 --entrypoint /scripts/follower.sh jamesmcclain/hadoop:2.7.6
 ```
