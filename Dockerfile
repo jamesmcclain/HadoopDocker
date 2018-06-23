@@ -1,7 +1,7 @@
 FROM openjdk:8u111-jdk
 MAINTAINER James McClain <james.mcclain@gmail.com>
 
-ADD hadoop-2.7.2.tar.gz /opt
+ADD archives/hadoop-2.7.2.tar.gz /opt
 ADD core-site.xml hdfs-site.xml yarn-site.xml /opt/hadoop-2.7.2/etc/hadoop/
 ADD hadoop-leader.sh hadoop-follower.sh leader.sh follower.sh /scripts/
 
