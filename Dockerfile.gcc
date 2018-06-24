@@ -1,0 +1,13 @@
+FROM jamesmcclain/hadoop:2.7.6
+MAINTAINER James McClain <james.mcclain@gmail.com>
+
+RUN apt-get update
+RUN apt-get install -y build-essential
+RUN apt-get install nano
+
+# ENV LD_LIBRARY_PATH=${HADOOP_PREFIX}/lib/native:${JAVA_HOME}/lib/server:${LD_LIBRARY_PATH}
+ENV LD_LIBRARY_PATH=${HADOOP_PREFIX}/lib/native:${JAVA_HOME}/lib/server
+
+ADD src/hdfs.c /tmp/code/hdfs.c
+
+RUN (cd /tmp/code ; gcc hdfs.c -I/opt/hadoop-2.7.6/include -L/opt/hadoop-2.7.6/lib/native -L/docker-java-home/lib/server -ljvm -lhdfs -o hdfs)

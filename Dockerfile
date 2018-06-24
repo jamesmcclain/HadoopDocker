@@ -11,6 +11,7 @@ RUN groupadd -r hdfs && useradd -r -g hdfs hdfs \
 
 EXPOSE 8088 19888 50070
 
-ENV HADOOP_PREFIX /opt/hadoop-2.7.6/
+ENV HADOOP_PREFIX=/opt/hadoop-2.7.6/
+ENV PATH=${HADOOP_PREFIX}/bin:${PATH}
 
 CMD ["/scripts/leader.sh"]
