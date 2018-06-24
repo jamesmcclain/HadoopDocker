@@ -29,7 +29,7 @@ To run the leader, type:
 
 ```bash
 docker network create --driver bridge hadoop
-docker run -it --rm --net=hadoop -p 8088:8088 -p 50070:50070 -p 19888:19888 --hostname leader --name leader --entrypoint /scripts/leader.sh jamesmcclain/hadoop:2.7.6
+docker run -it --rm --net=hadoop -p 8088:8088 -p 50070:50070 -p 19888:19888 --hostname leader --name leader jamesmcclain/hadoop:2.7.6
 ```
 
 ## Running a Follower ###
